@@ -1,0 +1,16 @@
+[
+{
+  "modid": "rfeuconvert",
+  "name": "rfeuconvert",
+  "description": "Mod to convert EU to RF.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/mcNETDev/rfeuconvert",
+  "updateUrl": "",
+  "authorList": ["mcNETDev"],
+  "credits": "Leo",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["forge,cofhcore,ic2"]
+}
+]

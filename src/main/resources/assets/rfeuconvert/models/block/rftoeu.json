@@ -1,0 +1,19 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "rfeuconvert:blocks/rftoeu_side"
+    },
+    "variants": {
+        "__comment": "tier is a int property.",
+        "tier": {
+            "1": {
+                "textures": {
+                    "texture": "blocks/cobblestone_mossy"
+                }
+            },
+            "false": {
+                "__comment": "Change nothing. The entry has to be here so the Forge blockstate loader knows to generate this variant."
+            }
+        }
+    }
+}
