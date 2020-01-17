@@ -25,7 +25,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RFtoEUBlock extends Block implements ITileEntityProvider {
 
-	public static final IProperty<Integer> tier = PropertyInteger.create("tier", 1, 5);
 	public static final int GUI_ID = 1;
 
 	public RFtoEUBlock() {
@@ -34,32 +33,11 @@ public class RFtoEUBlock extends Block implements ITileEntityProvider {
 		setUnlocalizedName(Rfeuconvert.MODID + ".rftoeu");
 		setCreativeTab(CreativeTabs.TOOLS);
 		setHardness(2);
-		setDefaultState(this.blockState.getBaseState().withProperty(tier, 1));
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileRFtoEU(meta + 1);
-	}
-
-	@Override
-	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, tier);
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return state.getValue(tier) - 1;
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return blockState.getBaseState().withProperty(tier, meta + 1);
-	}
-
-	@Override
-	public int damageDropped(IBlockState state) {
-		return state.getValue(tier) - 1;
 	}
 
 	public ItemBlock getItemBlock() {
@@ -71,15 +49,6 @@ public class RFtoEUBlock extends Block implements ITileEntityProvider {
 		result.setRegistryName(getRegistryName());
 		return result;
 	}
-
-//	@Override
-//	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-//		items.add(new ItemStack(this, 1, 0));
-//		items.add(new ItemStack(this, 1, 1));
-//		items.add(new ItemStack(this, 1, 2));
-//		items.add(new ItemStack(this, 1, 3));
-//		items.add(new ItemStack(this, 1, 4));
-//	}
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,

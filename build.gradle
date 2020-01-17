@@ -10,8 +10,14 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
+ext.configFile = file "build.properties"
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
 
-version = "0.0.1"
+version = config.mc_version + "-" + config.mod_version + "-" + config.build_number
 group = "de.dwdev.rfeuconvert" 
 archivesBaseName = "rfeuconvert"
 
@@ -21,12 +27,12 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2847"
+    version = config.mc_version + "-" + config.forge_version
     runDir = "run"
     
     
     mappings = "snapshot_20171003"
-    makeObfSourceJar = false
+    makeObfSourceJar = true
 }
 repositories {
     flatDir {
@@ -36,19 +42,32 @@ repositories {
 dependencies {
     compile fileTree('lib') { include '*.jar' }
 }
+
+
+jar {
+    dependsOn "incrementBuildNumber"
+    classifier = ''
+     manifest.mainAttributes(
+            "Built-By": System.getProperty('user.name'),
+            "Created-By": "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version
+    )
+}
+
+
+// because the normal output has been made to be obfuscated
 task deobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'deobf'
 }
 
-task srcJar(type: Jar) {
-    from sourceSets.main.allSource
-    classifier = 'sources'
+tasks.build.dependsOn deobfJar
+
+tasks.withType(JavaCompile) { task ->
+    task.options.encoding = 'UTF-8'
 }
-jar {
- 
-    classifier = 'universal'
-}
+
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
@@ -65,5 +84,17 @@ processResources {
     // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+task("incrementBuildNumber") {
+    // increment build number
+    doFirst {
+        // increment
+        config.build_number = (config.build_number.toString().toInteger()) + 1
+
+        // write back to the file
+        configFile.withWriter {
+            config.toProperties().store(it, "")
+        }
     }
 }

@@ -1,6 +1,7 @@
 package de.dwdev.rfeuconvert;
 
 import net.minecraft.init.Blocks;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -31,6 +32,7 @@ public class Rfeuconvert {
 
 	private static Logger logger;
 	public static int multiplier = 4;
+	public static int storage = 1000000;
 
 	public static final String DEPENDENCIES = CoFHCore.VERSION_GROUP + "required-after:ic2";
 
@@ -38,7 +40,10 @@ public class Rfeuconvert {
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
 		PROXY.preInit(event);
-
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		multiplier = config.getInt("multiplier", "general", 4, 1, 9999, "X RF/t = 1 EU/t");
+		storage = config.getInt("rfstorage", "general", 1000000, 100000, Integer.MAX_VALUE, "RF Storage");
+		config.save();
 	}
 
 	@EventHandler

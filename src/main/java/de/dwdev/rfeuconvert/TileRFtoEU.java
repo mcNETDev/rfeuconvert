@@ -22,7 +22,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileRFtoEU extends TileEntity implements ITickable, IEnergySource {
 
-	private IEnergyStorage energy = new EnergyStorage(1000000);
+	private IEnergyStorage energy = new EnergyStorage(Rfeuconvert.storage);
 	private int tier = 1;
 	private ItemStackHandler itemStackHandler = new ItemStackHandler(1) {
 		protected void onContentsChanged(int slot) {

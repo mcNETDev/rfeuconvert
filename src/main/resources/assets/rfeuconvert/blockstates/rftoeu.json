@@ -21,48 +21,6 @@
         ],
         "normal": {
             "model": "cube"
-        },
-        "tier": {
-            "1": {
-                "textures": {
-                    "north": "rfeuconvert:blocks/rftoeu_1",
-                    "east": "rfeuconvert:blocks/rftoeu_1",
-                    "south": "rfeuconvert:blocks/rftoeu_1",
-                    "west": "rfeuconvert:blocks/rftoeu_1"
-                }
-            },
-            "2": {
-                "textures": {
-                    "north": "rfeuconvert:blocks/rftoeu_2",
-                    "east": "rfeuconvert:blocks/rftoeu_2",
-                    "south": "rfeuconvert:blocks/rftoeu_2",
-                    "west": "rfeuconvert:blocks/rftoeu_2"
-                }
-            },
-            "3": {
-                "textures": {
-                    "north": "rfeuconvert:blocks/rftoeu_3",
-                    "east": "rfeuconvert:blocks/rftoeu_3",
-                    "south": "rfeuconvert:blocks/rftoeu_3",
-                    "west": "rfeuconvert:blocks/rftoeu_3"
-                }
-            },
-            "4": {
-                "textures": {
-                    "north": "rfeuconvert:blocks/rftoeu_4",
-                    "east": "rfeuconvert:blocks/rftoeu_4",
-                    "south": "rfeuconvert:blocks/rftoeu_4",
-                    "west": "rfeuconvert:blocks/rftoeu_4"
-                }
-            },
-            "5": {
-                "textures": {
-                    "north": "rfeuconvert:blocks/rftoeu_5",
-                    "east": "rfeuconvert:blocks/rftoeu_5",
-                    "south": "rfeuconvert:blocks/rftoeu_5",
-                    "west": "rfeuconvert:blocks/rftoeu_5"
-                }
-            }
         }
     }
 }
